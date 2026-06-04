@@ -14,6 +14,15 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     define: envDefine,
+    ssr: {
+      // Keep client-oriented TanStack modules external during SSR/Nitro bundling.
+      external: [
+        "@tanstack/react-router",
+        "@tanstack/react-router/dist/esm",
+        "@tanstack/react-query",
+        "@tanstack/react-query/build/modern",
+      ],
+    },
     css: { transformer: "lightningcss" },
     resolve: {
       alias: { "@": `${process.cwd()}/src` },
