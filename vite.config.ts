@@ -7,6 +7,8 @@ import { nitro } from "nitro/vite";
 
 export default defineConfig(({ command, mode }) => {
   const loadedEnv = loadEnv(mode, process.cwd(), "VITE_");
+  const isNetlifyBuild =
+    process.env.NETLIFY === "true" || process.env.CONTEXT === "production";
   const envDefine: Record<string, string> = {};
   for (const [key, value] of Object.entries(loadedEnv)) {
     envDefine[`import.meta.env.${key}`] = JSON.stringify(value);
@@ -51,7 +53,7 @@ export default defineConfig(({ command, mode }) => {
       ...(command === "build"
         ? [
             nitro({
-              preset: "node-server",
+              preset: isNetlifyBuild ? "netlify" : "node-server",
             }),
           ]
         : []),
