@@ -40,7 +40,7 @@ function PersonCard({
             </p>
           </div>
 
-          <div>
+          {/* <div>
             <p className="text-[0.62rem] uppercase tracking-[0.3em] text-gold/80">Contact</p>
             <a
               href={`tel:${person.contact.replace(/\s/g, "")}`}
@@ -48,7 +48,7 @@ function PersonCard({
             >
               {person.contact}
             </a>
-          </div>
+          </div> */}
 
           <div>
             <p className="text-[0.62rem] uppercase tracking-[0.3em] text-gold/80">
